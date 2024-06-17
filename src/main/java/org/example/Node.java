@@ -51,6 +51,16 @@ public class Node implements Comparable<Node> {
     }
 
     @Override
+    public String toString() {
+        return "Node{" +
+                "data=" + data +
+                ", weight=" + weight +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
+    }
+
+    @Override
     public int compareTo(Node o) {
         return o.weight - this.weight;
     }
