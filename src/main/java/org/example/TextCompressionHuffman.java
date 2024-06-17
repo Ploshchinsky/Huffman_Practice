@@ -11,10 +11,10 @@ public class TextCompressionHuffman {
         return charFreq;
     }
 
-    public static List<Node> getNodesFromMap(Map<Character, Integer> charFreqMap) {
-        List<Node> nodeList = new ArrayList<>();
+    public static List<BinaryTreeNode> getNodesFromMap(Map<Character, Integer> charFreqMap) {
+        List<BinaryTreeNode> nodeList = new ArrayList<>();
         for (Map.Entry<Character, Integer> entry : charFreqMap.entrySet()) {
-            nodeList.add(new Node(entry.getKey(), entry.getValue()));
+            nodeList.add(new BinaryTreeNode(entry.getKey(), entry.getValue()));
         }
         return nodeList;
     }

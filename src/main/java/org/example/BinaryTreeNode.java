@@ -1,17 +1,17 @@
 package org.example;
 
-public class Node implements Comparable<Node> {
+public class BinaryTreeNode implements Comparable<BinaryTreeNode> {
     private Character data;
     private int weight;
-    private Node left;
-    private Node right;
+    private BinaryTreeNode left;
+    private BinaryTreeNode right;
 
-    public Node(Character data, int weight) {
+    public BinaryTreeNode(Character data, int weight) {
         this.data = data;
         this.weight = weight;
     }
 
-    public Node(Character data, int weight, Node left, Node right) {
+    public BinaryTreeNode(Character data, int weight, BinaryTreeNode left, BinaryTreeNode right) {
         this.data = data;
         this.weight = weight;
         this.left = left;
@@ -34,19 +34,19 @@ public class Node implements Comparable<Node> {
         this.weight = weight;
     }
 
-    public Node getLeft() {
+    public BinaryTreeNode getLeft() {
         return left;
     }
 
-    public void setLeft(Node left) {
+    public void setLeft(BinaryTreeNode left) {
         this.left = left;
     }
 
-    public Node getRight() {
+    public BinaryTreeNode getRight() {
         return right;
     }
 
-    public void setRight(Node right) {
+    public void setRight(BinaryTreeNode right) {
         this.right = right;
     }
 
@@ -61,7 +61,7 @@ public class Node implements Comparable<Node> {
     }
 
     @Override
-    public int compareTo(Node o) {
+    public int compareTo(BinaryTreeNode o) {
         return o.weight - this.weight;
     }
 }
