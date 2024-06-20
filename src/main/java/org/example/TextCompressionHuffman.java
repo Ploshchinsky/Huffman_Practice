@@ -1,11 +1,54 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.*;
 
 public class TextCompressionHuffman {
     private static Map<Character, Integer> charFreq;
     private static List<BinaryTreeNode> nodeList;
     private static BinaryTreeNode tree;
+
+    public static void encodeAsFile(String originalText, Path pathFile) throws ParseException {
+        String encodedString = encode(originalText);
+        byte[] bytes = new byte[encodedString.length()];
+
+        for (int i = 0; i < bytes.length; i++) {
+            if (encodedString.charAt(i) == '0') {
+                bytes[i] = 0;
+            } else if (encodedString.charAt(i) == '1') {
+                bytes[i] = 1;
+            } else {
+                throw new ParseException("String contains invalid characters. Only '0' and '1' are allowed.", i);
+            }
+        }
+
+        try {
+            Files.write(pathFile, bytes);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String decodeFile(Path pathFile) {
+        StringBuilder result = new StringBuilder();
+        byte[] bytes = null;
+        try {
+            bytes = Files.readAllBytes(pathFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (byte b : bytes) {
+            if (b == 0) {
+                result.append("0");
+            } else if (b == 1) {
+                result.append("1");
+            }
+        }
+        return decode(result.toString());
+    }
 
     public static String encode(String originalText) {
         charFreq = getCharFreq(originalText);
