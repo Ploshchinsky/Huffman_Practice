@@ -1,7 +1,11 @@
 package org.example;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
 import java.util.*;
 
 public class TextCompressionTest {
@@ -51,5 +55,19 @@ public class TextCompressionTest {
         System.out.println(encodeString);
         System.out.println(decodeString);
         System.out.println("----");
+    }
+
+    @Test
+    public void encodeDecodeFileTest() {
+        Path filePath = Paths.get("src/main/resources/encoded.bin");
+        String expected = text;
+        String actual = "";
+        try {
+            TextCompressionHuffman.encodeAsFile(text, filePath);
+            actual = TextCompressionHuffman.decodeFile(filePath);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        Assertions.assertEquals(expected, actual);
     }
 }
